@@ -41,6 +41,13 @@ body {
     color: #BFC9CA;
 }
 
+#resetbutton{
+	z-index: 1;
+	position: absolute;
+	top: 280px;
+    left: 355px;
+}
+
 #userpickcontainer {
 	margin-top: 10%;
     width: 25%;
@@ -123,7 +130,7 @@ body {
 	display: inline;
 }
 
-.defeat img{
+.defender img{
 	border-style: solid;
 	border-width: 5px;
 	border-color: black;

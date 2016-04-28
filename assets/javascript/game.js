@@ -1,6 +1,6 @@
 //RPG Game by Patrick Hernandez
 
-//boxing theme
+
 
 var game = {
 
