@@ -3,7 +3,7 @@ body {
 }
 
 #ring{
-	background-image: url(../images/bg.JPG);
+	background-image: url(../images/bg.jpg);
 	width: 60%;
 	height: 75%;
 	float: left;
@@ -35,7 +35,7 @@ body {
 	height: 25%;
 	border-style: solid;
 	border-color: #17202A;
-	background-image: url(../images/bg2.JPG);
+	background-image: url(../images/bg2.jpg);
 	
 }
 

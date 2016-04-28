@@ -53,15 +53,15 @@ $(document).ready(function() {
 	var koAlertchar3 = ("Manny Pacquiao has been Knocked Out!" + "<br>" + "Choose another boxer to fight!");
 	var koAlertchar4 = ("Clubber Lang has been Knocked Out!" + "<br>" + "Choose another boxer to fight!");
 
-	var char1pic = ("<img src=\"assets/images/PH1.JPG\">");
-	var char2pic = ("<img src=\"assets/images/PH2.JPG\">");
-	var char3pic = ("<img src=\"assets/images/PH3.JPG\">");
-	var char4pic = ("<img src=\"assets/images/PH4.JPG\">");
+	var char1pic = ("<img src=\"assets/images/PH1.jpg\">");
+	var char2pic = ("<img src=\"assets/images/PH2.jpg\">");
+	var char3pic = ("<img src=\"assets/images/PH3.jpg\">");
+	var char4pic = ("<img src=\"assets/images/PH4.jpg\">");
 
-	var def1 = ("<img src=\"assets/images/P1ko.JPG\">");
-	var def2 = ("<img src=\"assets/images/P2ko.JPG\">");
-	var def3 = ("<img src=\"assets/images/P3ko.JPG\">");
-	var def4 = ("<img src=\"assets/images/P4ko.JPG\">");
+	var def1 = ("<img src=\"assets/images/P1ko.jpg\">");
+	var def2 = ("<img src=\"assets/images/P2ko.jpg\">");
+	var def3 = ("<img src=\"assets/images/P3ko.jpg\">");
+	var def4 = ("<img src=\"assets/images/P4ko.jpg\">");
 
 	var gif1 = ("<img src=\"assets/images/gif1.gif\">");
 
