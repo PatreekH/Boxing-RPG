@@ -41,7 +41,7 @@ body {
     color: #BFC9CA;
 }
 
-#resetbutton{
+#resetB{
 	z-index: 1;
 	position: absolute;
 	top: 280px;
@@ -130,7 +130,7 @@ body {
 	display: inline;
 }
 
-.defender img{
+#defeatbox img{
 	border-style: solid;
 	border-width: 5px;
 	border-color: black;

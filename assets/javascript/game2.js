@@ -47,24 +47,24 @@ $(document).ready(function() {
 	var char3 = $("#char3");
 	var char4 = $("#char4");
 
-
 	var koAlertchar1 = ("Muhammed Ali has been Knocked Out!" + "<br>" + "Choose another boxer to fight!");
 	var koAlertchar2 = ("Mike Tyson has been Knocked Out!" + "<br>" + "Choose another boxer to fight!");
 	var koAlertchar3 = ("Manny Pacquiao has been Knocked Out!" + "<br>" + "Choose another boxer to fight!");
 	var koAlertchar4 = ("Clubber Lang has been Knocked Out!" + "<br>" + "Choose another boxer to fight!");
 
+	var char1pic = ("<img src=\"assets/images/PH1.JPG\">");
+	var char2pic = ("<img src=\"assets/images/PH2.JPG\">");
+	var char3pic = ("<img src=\"assets/images/PH3.JPG\">");
+	var char4pic = ("<img src=\"assets/images/PH4.JPG\">");
+
 
 //edit defender css so that enemies and defeated divs are based on their div and not this image, make this reset image afterwards
-	var char1pic = ("<div class=\"defender\">" + "<img src=\"assets/images/PH1.JPG\">" + "</div>");
-	var char2pic = ("<div class=\"defender\">" + "<img src=\"assets/images/PH2.JPG\">" + "</div>");
-	var char3pic = ("<div class=\"defender\">" + "<img src=\"assets/images/PH3.JPG\">" + "</div>");
-	var char4pic = ("<div class=\"defender\">" + "<img src=\"assets/images/PH4.JPG\">" + "</div>");
 
-	var vsenemy1 = false;
-	var vsenemy2 = false;
-	var vsenemy3 = false;
+	var vsenemy1;
+	var vsenemy2;
+	var vsenemy3;
 
-	var userpickchar = false;
+	var userpickchar;
 
 	var enemy1defeat;
 	var enemy2defeat;
@@ -80,24 +80,32 @@ $(document).ready(function() {
 	$("#defstats").hide();
 	$("#alerts").html("Pick a boxer!");
 
+
 	$("#char1").on("click", function(){
-		var char1game = new game(char1, char2pic, char3pic, char4pic, health1, att1, ctatt1, health2, att2, ctatt2, health3, att3, ctatt3, health4, att4, ctatt4, koAlertchar2, koAlertchar3, koAlertchar4); 
+		var char1game = new game(char1pic, char2pic, char3pic, char4pic, health1, att1, ctatt1, health2, att2, ctatt2, health3, att3, ctatt3, health4, att4, ctatt4, koAlertchar2, koAlertchar3, koAlertchar4); 
+		$(".char").hide();
 	});
 
 	$("#char2").on("click", function(){
-		var char2game = new game(char2, char1pic, char3pic, char4pic, health2, att2, ctatt2, health1, att1, ctatt1, health3, att3, ctatt3, health4, att4, ctatt4, koAlertchar1, koAlertchar3, koAlertchar4); 
+		var char2game = new game(char2pic, char1pic, char3pic, char4pic, health2, att2, ctatt2, health1, att1, ctatt1, health3, att3, ctatt3, health4, att4, ctatt4, koAlertchar1, koAlertchar3, koAlertchar4); 
+		$(".char").hide();
 	});
 
 	$("#char3").on("click", function(){
-		var char3game = new game(char3, char1pic, char2pic, char4pic, health3, att3, ctatt3, health1, att1, ctatt1, health2, att2, ctatt2, health4, att4, ctatt4, koAlertchar1, koAlertchar2, koAlertchar4); 
+		var char3game = new game(char3pic, char1pic, char2pic, char4pic, health3, att3, ctatt3, health1, att1, ctatt1, health2, att2, ctatt2, health4, att4, ctatt4, koAlertchar1, koAlertchar2, koAlertchar4); 
+		$(".char").hide();
 	});
 
 	$("#char4").on("click", function(){
-		var char4game = new game(char4, char1pic, char2pic, char3pic, health4, att4, ctatt4, health1, att1, ctatt1, health2, att2, ctatt2, health3, att3, ctatt3, koAlertchar1, koAlertchar2, koAlertchar3); 
+		var char4game = new game(char4pic, char1pic, char2pic, char3pic, health4, att4, ctatt4, health1, att1, ctatt1, health2, att2, ctatt2, health3, att3, ctatt3, koAlertchar1, koAlertchar2, koAlertchar3); 
+		$(".char").hide();
 	}); 
 
+
 	var game = function(userpick, enemy1, enemy2, enemy3, userhealth, userattack, userct, enemy1hp, enemy1att, enemy1ct, enemy2hp, enemy2att, enemy2ct, enemy3hp, enemy3att, enemy3ct, koAlert1, koAlert2, koAlert3){
+		
 		this.userpick = userpick;
+
 		this.enemy1 = enemy1;
 		this.enemy2 = enemy2;
 		this.enemy3 = enemy3;
@@ -122,15 +130,16 @@ $(document).ready(function() {
 		this.koAlert2 = koAlert2;
 		this.koAlert3 = koAlert3;
 
-
-			$("#userpickplace").append(userpick);
-			$("#enemy1spot").append(enemy1);
-			$("#enemy2spot").append(enemy2);
-			$("#enemy3spot").append(enemy3);
-			$("#selection").empty();
+			$("#userpickplace").html(userpick);
+			$("#enemy1spot").html(enemy1);
+			$("#enemy2spot").html(enemy2);
+			$("#enemy3spot").html(enemy3);
 			$("#alerts").html("Choose an opponent!");
 
 			userpickchar = true;
+
+			$("#resetB").hide();
+			$("#resetB").html(resetB);
 
 			$("#stats").show();
 			$("#currenthp").html(userhealth);
@@ -138,6 +147,7 @@ $(document).ready(function() {
 			$("#ct").html(userct);
 
 			$("#enemy1spot").on("click", function(){
+				$("#attackB").empty();
 				$("#attackB").append(boxB);
 				$("#defplace").html(enemy1);
 				$("#enemy1spot").empty();
@@ -167,7 +177,7 @@ $(document).ready(function() {
 							$("#stats").empty();
 							$("#alerts").html("YOU have been Knocked Out!");
 						}
-						else if (vsenemy1 === true && enemy1hp <= 0) {
+						else if (enemy1hp <= 0) {
 							$("#defeatbox").append(enemy1);
 							$("#defplace").empty();
 							$("#attackB").empty();
@@ -177,23 +187,26 @@ $(document).ready(function() {
 						}
 						if (enemy1defeat === true && enemy2defeat === true && enemy3defeat === true){
 							$("#alerts").html("You win!");
-							$("#resetbutton").append(resetB);
+							$("#resetB").show();
 						}
 						$("#reset").on("click", function(){
-							$("#selection").html(char1);
-							$("#selection").html(char2);
-							$("#selection").html(char3);
-							$("#selection").html(char4);
+							$(".char").show();
 							$("#defeatbox").empty();
-							$("#reset").empty();
-
+							$("#userpickplace").empty();
+							game();
+							$("#stats").hide();
+							$("#defstats").hide();
+							$("#alerts").html("Pick a boxer!");
+							enemy1defeat = false;
+							enemy2defeat = false;
+							enemy3defeat = false;
 						});
-
 					});
 				}
 			});
 	
 			$("#enemy2spot").on("click", function(){
+				$("#attackB").empty();
 				$("#attackB").append(boxB);
 				$("#defplace").html(enemy2);
 				$("#enemy2spot").empty();
@@ -224,7 +237,7 @@ $(document).ready(function() {
 							$("#stats").empty();
 							$("#alerts").html("YOU have been Knocked Out!");
 						}
-						else if (vsenemy2 === true && enemy2hp <= 0) {
+						else if (enemy2hp <= 0) {
 							$("#defeatbox").append(enemy2);
 							$("#defplace").empty();
 							$("#attackB").empty();
@@ -234,12 +247,27 @@ $(document).ready(function() {
 						}
 						if (enemy1defeat === true && enemy2defeat === true && enemy3defeat === true){
 							$("#alerts").html("You win!");
+							$("#resetB").show();
 						}
+
+						$("#reset").on("click", function(){
+							$(".char").show();
+							$("#defeatbox").empty();
+							$("#userpickplace").empty();
+							game();
+							$("#stats").hide();
+							$("#defstats").hide();
+							$("#alerts").html("Pick a boxer!");
+							enemy1defeat = false;
+							enemy2defeat = false;
+							enemy3defeat = false;
+						});
 					});
 				}
 			});
 			
 			$("#enemy3spot").on("click", function(){
+				$("#attackB").empty();
 				$("#attackB").append(boxB);
 				$("#defplace").html(enemy3);
 				$("#enemy3spot").empty();
@@ -271,7 +299,7 @@ $(document).ready(function() {
 							$("#stats").empty();
 							$("#alerts").html("YOU have been Knocked Out!");
 						}
-						else if (vsenemy3 === true && enemy3hp <= 0) {
+						else if (enemy3hp <= 0) {
 							$("#defeatbox").append(enemy3);
 							$("#defplace").empty();
 							$("#attackB").empty();
@@ -282,12 +310,25 @@ $(document).ready(function() {
 
 						if (enemy1defeat === true && enemy2defeat === true && enemy3defeat === true){
 							$("#alerts").html("You win!");
+							$("#resetB").show();
 						}
-					});
 
+						$("#reset").on("click", function(){
+							$(".char").show();
+							$("#userpickplace").empty();
+							$("#defeatbox").empty();
+							game();
+							$("#stats").hide();
+							$("#defstats").hide();
+							$("#alerts").html("Pick a boxer!");
+							enemy1defeat = false;
+							enemy2defeat = false;
+							enemy3defeat = false;
+
+						});
+					});
 				}
 			});
-
 	};
 });
 
