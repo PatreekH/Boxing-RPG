@@ -1,26 +1,15 @@
 //RPG Game by Patrick Hernandez
 
-//space inbtween 1:2 sections
-//make quad pic in PS with :2 bg
-//z index stats and name
-//fix ring image
-//rearrange box button, reset button and alerts
-//make gif appear every click
-//we are the champions plays when you win
-//animate to move
-//new pics on death
-
 
 var stats = {
 	char1: [
 	name = "1",
-	//120
 	health = 200,
 	att = 8,
 	ctatt = 10 ],
 	char2: [
 	name = "2",
-	health = 100,
+	health = 135,
 	att = 8,
 	ctatt = 5 ],
 	char3: [
@@ -37,6 +26,7 @@ var stats = {
 };
 
 $(document).ready(function() {
+
 
 	var health1 = stats.char1[1];
 	var health2 = stats.char2[1];
@@ -73,6 +63,8 @@ $(document).ready(function() {
 	var def3 = ("<img src=\"assets/images/P3ko.JPG\">");
 	var def4 = ("<img src=\"assets/images/P4ko.JPG\">");
 
+	var gif1 = ("<img src=\"assets/images/gif1.gif\">");
+
 	var vsenemy1;
 	var vsenemy2;
 	var vsenemy3;
@@ -88,6 +80,12 @@ $(document).ready(function() {
 	var boxB = ("<button id=\"box\">" + "Box!" + "</button>");
 
 	var resetB = ("<button id=\"reset\">" + "Reset" + "</button>");
+
+	var timer;
+
+	var timerfunc = function(){
+		$("#agif").empty();
+	}
 
 	$("#stats").hide();
 	$("#defstats").hide();
@@ -194,6 +192,9 @@ $(document).ready(function() {
 						$("#currenthp").html(userhealth);
 						$("#currentatt").html(userattack);
 						$("#defhp").html(enemy1hp);
+						$("#agif").html(gif1);
+						timer = setTimeout(timerfunc, 1100);
+
 						
 
 					//If the user gets knocked out
@@ -214,6 +215,7 @@ $(document).ready(function() {
 							$("#defstats").hide();
 							$("#alerts").html(koAlert1);
 							$("#defbox").hide();
+							$("#agif").empty();
 							enemy1defeat = true;
 						}
 					//If all 3 enemies have been defeated, show win text, reveal reset button
@@ -268,6 +270,8 @@ $(document).ready(function() {
 						$("#currenthp").html(userhealth);
 						$("#currentatt").html(userattack);
 						$("#defhp").html(enemy2hp);
+						$("#agif").html(gif1);
+						timer = setTimeout(timerfunc, 1100);
 					
 					//If the user gets knocked out
 						if (userhealth <= 0) {
@@ -287,6 +291,7 @@ $(document).ready(function() {
 							$("#defstats").hide();
 							$("#alerts").html(koAlert2);
 							$("#defbox").hide();
+							$("#agif").empty();
 							enemy2defeat = true;
 						}
 					// If all 3 enemies have been defeated, show win text, reveal reset button
@@ -342,6 +347,8 @@ $(document).ready(function() {
 						$("#currenthp").html(userhealth);
 						$("#currentatt").html(userattack);
 						$("#defhp").html(enemy3hp);
+						$("#agif").html(gif1);
+						timer = setTimeout(timerfunc, 1100);
 					
 					//If the user gets knocked out
 						if (userhealth <= 0) {
@@ -361,6 +368,7 @@ $(document).ready(function() {
 							$("#defstats").hide();
 							$("#alerts").html(koAlert3);
 							$("#defbox").hide();
+							$("#agif").empty();
 							enemy3defeat = true;
 						}
 					//If all 3 enemies have been defeated, show win text, reveal reset button
