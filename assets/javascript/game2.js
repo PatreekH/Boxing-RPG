@@ -176,6 +176,7 @@ $(document).ready(function() {
 							$("#userpickplace").empty();
 							$("#stats").empty();
 							$("#alerts").html("YOU have been Knocked Out!");
+							$("#resetB").show();
 						}
 						else if (enemy1hp <= 0) {
 							$("#defeatbox").append(enemy1);
@@ -193,6 +194,9 @@ $(document).ready(function() {
 							$(".char").show();
 							$("#defeatbox").empty();
 							$("#userpickplace").empty();
+							$("#defplace").empty();
+							$(".enemy").empty();
+							$("#attackB").empty();
 							game();
 							$("#stats").hide();
 							$("#defstats").hide();
@@ -236,6 +240,7 @@ $(document).ready(function() {
 							$("#userpickplace").empty();
 							$("#stats").empty();
 							$("#alerts").html("YOU have been Knocked Out!");
+							$("#resetB").show();
 						}
 						else if (enemy2hp <= 0) {
 							$("#defeatbox").append(enemy2);
@@ -254,6 +259,9 @@ $(document).ready(function() {
 							$(".char").show();
 							$("#defeatbox").empty();
 							$("#userpickplace").empty();
+							$("#defplace").empty();
+							$(".enemy").empty();
+							$("#attackB").empty();
 							game();
 							$("#stats").hide();
 							$("#defstats").hide();
@@ -298,6 +306,7 @@ $(document).ready(function() {
 							$("#userpickplace").empty();
 							$("#stats").empty();
 							$("#alerts").html("YOU have been Knocked Out!");
+							$("#resetB").show();
 						}
 						else if (enemy3hp <= 0) {
 							$("#defeatbox").append(enemy3);
@@ -315,8 +324,11 @@ $(document).ready(function() {
 
 						$("#reset").on("click", function(){
 							$(".char").show();
-							$("#userpickplace").empty();
 							$("#defeatbox").empty();
+							$("#userpickplace").empty();
+							$("#defplace").empty();
+							$(".enemy").empty();
+							$("#attackB").empty();
 							game();
 							$("#stats").hide();
 							$("#defstats").hide();
