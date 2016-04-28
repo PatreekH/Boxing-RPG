@@ -57,15 +57,12 @@ $(document).ready(function() {
 	var char3pic = ("<img src=\"assets/images/PH3.JPG\">");
 	var char4pic = ("<img src=\"assets/images/PH4.JPG\">");
 
-
-//edit defender css so that enemies and defeated divs are based on their div and not this image, make this reset image afterwards
-
 	var vsenemy1;
 	var vsenemy2;
 	var vsenemy3;
 
 	var userpickchar;
-
+	
 	var enemy1defeat;
 	var enemy2defeat;
 	var enemy3defeat;
@@ -104,6 +101,8 @@ $(document).ready(function() {
 
 	var game = function(userpick, enemy1, enemy2, enemy3, userhealth, userattack, userct, enemy1hp, enemy1att, enemy1ct, enemy2hp, enemy2att, enemy2ct, enemy3hp, enemy3att, enemy3ct, koAlert1, koAlert2, koAlert3){
 		
+	//Interchangeable game variables for each character
+
 		this.userpick = userpick;
 
 		this.enemy1 = enemy1;
@@ -130,22 +129,27 @@ $(document).ready(function() {
 		this.koAlert2 = koAlert2;
 		this.koAlert3 = koAlert3;
 
+		//Characters move based on users pick
 			$("#userpickplace").html(userpick);
 			$("#enemy1spot").html(enemy1);
 			$("#enemy2spot").html(enemy2);
 			$("#enemy3spot").html(enemy3);
 			$("#alerts").html("Choose an opponent!");
 
+		//Tells the computer a character has been picked by the user
 			userpickchar = true;
 
+		//Hides the reset button (Only needed after the user resets for the first time)
 			$("#resetB").hide();
 			$("#resetB").html(resetB);
 
+		//Shows users characters stats
 			$("#stats").show();
 			$("#currenthp").html(userhealth);
 			$("#currentatt").html(userattack);
 			$("#ct").html(userct);
 
+		//Adjusts defender area if the user picks enemy 1
 			$("#enemy1spot").on("click", function(){
 				$("#attackB").empty();
 				$("#attackB").append(boxB);
@@ -158,7 +162,7 @@ $(document).ready(function() {
 				$("#defatt").html(enemy1att);
 				$("#defct").html(enemy1ct);
 
-				// If user chooses to fight enemy spot 1
+				//If user chooses to fight enemy spot 1
 				if (userpickchar === true && vsenemy1 === true) {
 					vsenemy2 = false;
 					vsenemy3 = false;
@@ -170,14 +174,16 @@ $(document).ready(function() {
 						$("#currentatt").html(userattack);
 						$("#defhp").html(enemy1hp);
 
-						//If either character dies
+					//If the user gets knocked out
 						if (userhealth <= 0) {
 							$("#defeatbox").html(userpick);
 							$("#userpickplace").empty();
-							$("#stats").empty();
+							$("#stats").hide();
 							$("#alerts").html("YOU have been Knocked Out!");
+							$("#attackB").empty();
 							$("#resetB").show();
 						}
+					//If enemy1 gets knocked out
 						else if (enemy1hp <= 0) {
 							$("#defeatbox").append(enemy1);
 							$("#defplace").empty();
@@ -186,10 +192,12 @@ $(document).ready(function() {
 							$("#alerts").html(koAlert1);
 							enemy1defeat = true;
 						}
+					//If all 3 enemies have been defeated, show win text, reveal reset button
 						if (enemy1defeat === true && enemy2defeat === true && enemy3defeat === true){
 							$("#alerts").html("You win!");
 							$("#resetB").show();
 						}
+					//Reset button
 						$("#reset").on("click", function(){
 							$(".char").show();
 							$("#defeatbox").empty();
@@ -208,7 +216,7 @@ $(document).ready(function() {
 					});
 				}
 			});
-	
+		//Adjusts defender area if the user picks enemy 2
 			$("#enemy2spot").on("click", function(){
 				$("#attackB").empty();
 				$("#attackB").append(boxB);
@@ -222,7 +230,7 @@ $(document).ready(function() {
 				$("#defatt").html(enemy2att);
 				$("#defct").html(enemy2ct);
 
-			// If user chooses to fight enemy spot 2 with char1
+			//If user chooses to fight enemy spot 2
 				if (userpickchar === true && vsenemy2 === true) {
 					vsenemy1 = false;
 					vsenemy3 = false;
@@ -234,14 +242,16 @@ $(document).ready(function() {
 						$("#currentatt").html(userattack);
 						$("#defhp").html(enemy2hp);
 					
-					//If either character dies
+					//If the user gets knocked out
 						if (userhealth <= 0) {
 							$("#defeatbox").html(userpick);
 							$("#userpickplace").empty();
-							$("#stats").empty();
+							$("#stats").hide();
 							$("#alerts").html("YOU have been Knocked Out!");
+							$("#attackB").empty();
 							$("#resetB").show();
 						}
+					//If enemy2 gets knocked out
 						else if (enemy2hp <= 0) {
 							$("#defeatbox").append(enemy2);
 							$("#defplace").empty();
@@ -250,11 +260,12 @@ $(document).ready(function() {
 							$("#alerts").html(koAlert2);
 							enemy2defeat = true;
 						}
+					// If all 3 enemies have been defeated, show win text, reveal reset button
 						if (enemy1defeat === true && enemy2defeat === true && enemy3defeat === true){
 							$("#alerts").html("You win!");
 							$("#resetB").show();
 						}
-
+					//Reset button
 						$("#reset").on("click", function(){
 							$(".char").show();
 							$("#defeatbox").empty();
@@ -273,7 +284,7 @@ $(document).ready(function() {
 					});
 				}
 			});
-			
+		//Adjusts defender area if the user picks enemy 2
 			$("#enemy3spot").on("click", function(){
 				$("#attackB").empty();
 				$("#attackB").append(boxB);
@@ -288,7 +299,7 @@ $(document).ready(function() {
 				$("#defct").html(enemy3ct);
 
 
-			// If user chooses to fight enemy spot 3 with char1
+			//If user chooses to fight enemy spot 3
 				if (userpickchar === true && vsenemy3 === true) {
 					vsenemy1 = false;
 					vsenemy2 = false;
@@ -300,14 +311,16 @@ $(document).ready(function() {
 						$("#currentatt").html(userattack);
 						$("#defhp").html(enemy3hp);
 					
-					//If either character dies
+					//If the user gets knocked out
 						if (userhealth <= 0) {
 							$("#defeatbox").html(userpick);
 							$("#userpickplace").empty();
-							$("#stats").empty();
+							$("#stats").hide();
 							$("#alerts").html("YOU have been Knocked Out!");
+							$("#attackB").empty();
 							$("#resetB").show();
 						}
+					//If enemy3 gets knocked out
 						else if (enemy3hp <= 0) {
 							$("#defeatbox").append(enemy3);
 							$("#defplace").empty();
@@ -316,12 +329,12 @@ $(document).ready(function() {
 							$("#alerts").html(koAlert3);
 							enemy3defeat = true;
 						}
-
+					//If all 3 enemies have been defeated, show win text, reveal reset button
 						if (enemy1defeat === true && enemy2defeat === true && enemy3defeat === true){
 							$("#alerts").html("You win!");
 							$("#resetB").show();
 						}
-
+					//Reset button
 						$("#reset").on("click", function(){
 							$(".char").show();
 							$("#defeatbox").empty();
