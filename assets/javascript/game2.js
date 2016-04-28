@@ -1,5 +1,16 @@
 //RPG Game by Patrick Hernandez
 
+//space inbtween 1:2 sections
+//make quad pic in PS with :2 bg
+//z index stats and name
+//fix ring image
+//rearrange box button, reset button and alerts
+//make gif appear every click
+//we are the champions plays when you win
+//animate to move
+//new pics on death
+
+
 var stats = {
 	char1: [
 	name = "1",
@@ -57,6 +68,11 @@ $(document).ready(function() {
 	var char3pic = ("<img src=\"assets/images/PH3.JPG\">");
 	var char4pic = ("<img src=\"assets/images/PH4.JPG\">");
 
+	var def1 = ("<img src=\"assets/images/P1ko.JPG\">");
+	var def2 = ("<img src=\"assets/images/P2ko.JPG\">");
+	var def3 = ("<img src=\"assets/images/P3ko.JPG\">");
+	var def4 = ("<img src=\"assets/images/P4ko.JPG\">");
+
 	var vsenemy1;
 	var vsenemy2;
 	var vsenemy3;
@@ -75,31 +91,33 @@ $(document).ready(function() {
 
 	$("#stats").hide();
 	$("#defstats").hide();
+	$("#userpickcontainer").hide();
+	$("#defbox").hide();
 	$("#alerts").html("Pick a boxer!");
 
 
 	$("#char1").on("click", function(){
-		var char1game = new game(char1pic, char2pic, char3pic, char4pic, health1, att1, ctatt1, health2, att2, ctatt2, health3, att3, ctatt3, health4, att4, ctatt4, koAlertchar2, koAlertchar3, koAlertchar4); 
+		var char1game = new game(char1pic, char2pic, char3pic, char4pic, health1, att1, ctatt1, health2, att2, ctatt2, health3, att3, ctatt3, health4, att4, ctatt4, koAlertchar2, koAlertchar3, koAlertchar4, def2, def3, def4); 
 		$(".char").hide();
 	});
 
 	$("#char2").on("click", function(){
-		var char2game = new game(char2pic, char1pic, char3pic, char4pic, health2, att2, ctatt2, health1, att1, ctatt1, health3, att3, ctatt3, health4, att4, ctatt4, koAlertchar1, koAlertchar3, koAlertchar4); 
+		var char2game = new game(char2pic, char1pic, char3pic, char4pic, health2, att2, ctatt2, health1, att1, ctatt1, health3, att3, ctatt3, health4, att4, ctatt4, koAlertchar1, koAlertchar3, koAlertchar4, def1, def3, def4); 
 		$(".char").hide();
 	});
 
 	$("#char3").on("click", function(){
-		var char3game = new game(char3pic, char1pic, char2pic, char4pic, health3, att3, ctatt3, health1, att1, ctatt1, health2, att2, ctatt2, health4, att4, ctatt4, koAlertchar1, koAlertchar2, koAlertchar4); 
+		var char3game = new game(char3pic, char1pic, char2pic, char4pic, health3, att3, ctatt3, health1, att1, ctatt1, health2, att2, ctatt2, health4, att4, ctatt4, koAlertchar1, koAlertchar2, koAlertchar4, def1, def2, def4); 
 		$(".char").hide();
 	});
 
 	$("#char4").on("click", function(){
-		var char4game = new game(char4pic, char1pic, char2pic, char3pic, health4, att4, ctatt4, health1, att1, ctatt1, health2, att2, ctatt2, health3, att3, ctatt3, koAlertchar1, koAlertchar2, koAlertchar3); 
+		var char4game = new game(char4pic, char1pic, char2pic, char3pic, health4, att4, ctatt4, health1, att1, ctatt1, health2, att2, ctatt2, health3, att3, ctatt3, koAlertchar1, koAlertchar2, koAlertchar3, def1, def2, def3); 
 		$(".char").hide();
 	}); 
 
 
-	var game = function(userpick, enemy1, enemy2, enemy3, userhealth, userattack, userct, enemy1hp, enemy1att, enemy1ct, enemy2hp, enemy2att, enemy2ct, enemy3hp, enemy3att, enemy3ct, koAlert1, koAlert2, koAlert3){
+	var game = function(userpick, enemy1, enemy2, enemy3, userhealth, userattack, userct, enemy1hp, enemy1att, enemy1ct, enemy2hp, enemy2att, enemy2ct, enemy3hp, enemy3att, enemy3ct, koAlert1, koAlert2, koAlert3, def1, def2, def3){
 		
 	//Interchangeable game variables for each character
 
@@ -129,7 +147,9 @@ $(document).ready(function() {
 		this.koAlert2 = koAlert2;
 		this.koAlert3 = koAlert3;
 
+
 		//Characters move based on users pick
+			$("#userpickcontainer").show();
 			$("#userpickplace").html(userpick);
 			$("#enemy1spot").html(enemy1);
 			$("#enemy2spot").html(enemy2);
@@ -143,7 +163,7 @@ $(document).ready(function() {
 			$("#resetB").hide();
 			$("#resetB").html(resetB);
 
-		//Shows users characters stats
+		//Shows user characters stats
 			$("#stats").show();
 			$("#currenthp").html(userhealth);
 			$("#currentatt").html(userattack);
@@ -151,6 +171,7 @@ $(document).ready(function() {
 
 		//Adjusts defender area if the user picks enemy 1
 			$("#enemy1spot").on("click", function(){
+				$("#defbox").show();
 				$("#attackB").empty();
 				$("#attackB").append(boxB);
 				$("#defplace").html(enemy1);
@@ -173,6 +194,7 @@ $(document).ready(function() {
 						$("#currenthp").html(userhealth);
 						$("#currentatt").html(userattack);
 						$("#defhp").html(enemy1hp);
+						
 
 					//If the user gets knocked out
 						if (userhealth <= 0) {
@@ -181,15 +203,17 @@ $(document).ready(function() {
 							$("#stats").hide();
 							$("#alerts").html("YOU have been Knocked Out!");
 							$("#attackB").empty();
+							$("#userpickcontainer").hide();
 							$("#resetB").show();
 						}
 					//If enemy1 gets knocked out
 						else if (enemy1hp <= 0) {
-							$("#defeatbox").append(enemy1);
+							$("#defeatbox").append(def1);
 							$("#defplace").empty();
 							$("#attackB").empty();
 							$("#defstats").hide();
 							$("#alerts").html(koAlert1);
+							$("#defbox").hide();
 							enemy1defeat = true;
 						}
 					//If all 3 enemies have been defeated, show win text, reveal reset button
@@ -209,6 +233,8 @@ $(document).ready(function() {
 							$("#stats").hide();
 							$("#defstats").hide();
 							$("#alerts").html("Pick a boxer!");
+							$("#userpickcontainer").hide();
+							$("#defbox").hide();
 							enemy1defeat = false;
 							enemy2defeat = false;
 							enemy3defeat = false;
@@ -218,6 +244,7 @@ $(document).ready(function() {
 			});
 		//Adjusts defender area if the user picks enemy 2
 			$("#enemy2spot").on("click", function(){
+				$("#defbox").show();
 				$("#attackB").empty();
 				$("#attackB").append(boxB);
 				$("#defplace").html(enemy2);
@@ -249,15 +276,17 @@ $(document).ready(function() {
 							$("#stats").hide();
 							$("#alerts").html("YOU have been Knocked Out!");
 							$("#attackB").empty();
+							$("#userpickcontainer").hide();
 							$("#resetB").show();
 						}
 					//If enemy2 gets knocked out
 						else if (enemy2hp <= 0) {
-							$("#defeatbox").append(enemy2);
+							$("#defeatbox").append(def2);
 							$("#defplace").empty();
 							$("#attackB").empty();
 							$("#defstats").hide();
 							$("#alerts").html(koAlert2);
+							$("#defbox").hide();
 							enemy2defeat = true;
 						}
 					// If all 3 enemies have been defeated, show win text, reveal reset button
@@ -277,6 +306,8 @@ $(document).ready(function() {
 							$("#stats").hide();
 							$("#defstats").hide();
 							$("#alerts").html("Pick a boxer!");
+							$("#userpickcontainer").hide();
+							$("#defbox").hide();
 							enemy1defeat = false;
 							enemy2defeat = false;
 							enemy3defeat = false;
@@ -286,6 +317,7 @@ $(document).ready(function() {
 			});
 		//Adjusts defender area if the user picks enemy 2
 			$("#enemy3spot").on("click", function(){
+				$("#defbox").show();
 				$("#attackB").empty();
 				$("#attackB").append(boxB);
 				$("#defplace").html(enemy3);
@@ -318,15 +350,17 @@ $(document).ready(function() {
 							$("#stats").hide();
 							$("#alerts").html("YOU have been Knocked Out!");
 							$("#attackB").empty();
+							$("#userpickcontainer").hide();
 							$("#resetB").show();
 						}
 					//If enemy3 gets knocked out
 						else if (enemy3hp <= 0) {
-							$("#defeatbox").append(enemy3);
+							$("#defeatbox").append(def3);
 							$("#defplace").empty();
 							$("#attackB").empty();
 							$("#defstats").hide();
 							$("#alerts").html(koAlert3);
+							$("#defbox").hide();
 							enemy3defeat = true;
 						}
 					//If all 3 enemies have been defeated, show win text, reveal reset button
@@ -346,6 +380,8 @@ $(document).ready(function() {
 							$("#stats").hide();
 							$("#defstats").hide();
 							$("#alerts").html("Pick a boxer!");
+							$("#userpickcontainer").hide();
+							$("#defbox").hide();
 							enemy1defeat = false;
 							enemy2defeat = false;
 							enemy3defeat = false;

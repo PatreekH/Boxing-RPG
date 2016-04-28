@@ -7,6 +7,12 @@
 </head>
 
 <body>
+
+<!--Z index of characters stats-->
+<div id="prof">
+<span class="profile" id="profile1"></span>
+</div>
+
 <!--Character selection starting place-->
 <div id="selection">
 <!--Char1-->
@@ -38,12 +44,14 @@
 
 	</div>
 
+<p id="rc">Red Corner</p>
+
 	<!--Users pick box-->	
 	<div id="userpickcontainer" >
 		<div id="userpickplace">
 		
 		</div>
-
+		<!--Users pick stats-->
 		<div class="allstats" id="stats">
 			<div id="hptext">Hp: <span id="currenthp"></span></div>
 			<div id="attText">Att: <span id="currentatt"></span></div>
@@ -51,6 +59,10 @@
 		</div>
 	</div>
 
+	<!--Attack Gif-->
+	<div id="agif">
+
+	</div>
 	<!--Attack Button-->
 	<div id="attackB">
 
@@ -61,7 +73,7 @@
 		<div id="defplace">
 
 		</div>
-
+		<!--Defenders stats-->
 		<div class="allstats" id="defstats">
 			<div id="defhptext">Hp: <span id="defhp"></span></div>
 			<div id="defattText">Att: <span id="defatt"></span></div>
@@ -70,6 +82,8 @@
 	</div>
 
 </div>
+
+<p id="bc">Blue Corner</p>
 
 <!--Enemies box-->
 <div id="enemiesbox">
