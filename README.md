@@ -1,1 +1,3 @@
-# week-4-game
+# Boxing RPG
+
+A boxing RPG built using JavaScript
